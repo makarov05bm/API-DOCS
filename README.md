@@ -43,11 +43,13 @@ app.use(base route, routesFile)
 ```js
 router.method(sub route, controller)
 ```
+
 > In the controller file
 > Install `express-async-handler`
 > Wrap all the methods
 ```js
 const asyncHandler = require('express-async-handler')
+
 exports.methodName = asyncHandler(async(req, res) => {
     // login goes in here
 })
