@@ -106,6 +106,7 @@ module.exports = Model
 | **type**   | String, Number, [String], [Number] |
 | **required**   | true, false |
 | **default**   | true, 'no-inage.jpg' |
+| **enum**   | ['PWN', 'RE', 'Melware Development'] |
 | **trim**   | true, false |
 | **maxlength**   | 50, [100, 'error message'] |
 | **minlength**   | 50, [100, 'error message'] |
