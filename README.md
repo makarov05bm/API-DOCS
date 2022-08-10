@@ -92,100 +92,15 @@ start()
 ```js
 const mongoose = require('mongoose')
 
-const BootcampSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Please add a name'],
-    unique: true,
-    trim: true,
-    maxlength: [50, 'Name can not be more than 50 characters']
-  },
-  slug: String,
-  description: {
-    type: String,
-    required: [true, 'Please add a description'],
-    maxlength: [500, 'Description can not be more than 500 characters']
-  },
-  website: {
-    type: String,
-    match: [
-        /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/,
-        'Please use a valid URL with HTTP or HTTPS'
-    ]
-  },
-  phone: {
-    type: String,
-    maxlength: [20, 'Please enter a valid phone number']
-  },
-  email: {
-    type: String,
-    match: [
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-        'Please enter a valid email'
-    ]
-  },
-  address: {
-    type: String,
-    required: [true, 'Please enter an address']
-  },
-  location: {
-    type: {
-        type: String,
-        enum: ['Point'],
-        required: true,
-    },
-    coordinates: {
-        type: [Number],
-        required: true,
-        index: '2dshpere'
-    },
-    formattedAddress: String,
-    street: String,
-    city: String,
-    state: String,
-    zipcode: String,
-    country: String,
-  },
-  carrers: {
-    type: [String],
-    enum: [
-        'Web Development',
-        'Mobile Development',
-        'UI/UX',
-        'Data Science',
-        'Business',
-        'Other'
-    ]
-  },
-  averageRating: {
-    type: Number,
-    min: [1, 'Rating must be at least 1'],
-    max: [10, 'Rating can not be more than 10'],
-  },
-  averageCost: Number,
-  photo: {
-    type: String,
-    default: 'no-photo.jpg'
-  },
-  housing: {
-    type: Boolean,
-    default: false
-  },
-  jobAssistance: {
-    type: Boolean,
-    default: false
-  },
-  jobGuarantee: {
-    type: Boolean,
-    default: false
-  },
-  acceptGi: {
-    type: Boolean,
-    default: false,
-  }
+const ModelSchema = new mongoose.Schema({
+    // model body
 }, {timestamps: true})
 
-const Bootcamp = mongoose.model('Bootcamp', BootcampSchema)
+const Model = mongoose.model('Model', ModelSchema)
 
-module.exports = Bootcamp
+module.exports = Model
 ```
+### model proprties
+| Option | Description | Example |
+| ------ | ----------- | ------- |
+| type   | The data type | type: String, Number, [String], [Number] |
