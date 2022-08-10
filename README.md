@@ -10,7 +10,7 @@ npm init -y
     "dev": "nodemon server"
 ```
 ### git initialisation
-- git init in the root
+- `git init` in the root
 - add a `gitignore` file in the root and add `.env` file and `node_modules/`
 <br/>
 <br/>
