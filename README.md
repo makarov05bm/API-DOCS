@@ -67,6 +67,8 @@ module.exports = connectDB
 ```
 > In `server.js` add the db connection function
 ```js
+const PORT = process.env.PORT || 5000
+
 const start = async () => {
     try {
         const conn = await connectDB(process.env.MONGO_URI)
