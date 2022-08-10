@@ -115,7 +115,7 @@ module.exports = Model
 <summary>Show full example</summary>
 <p>
 ```js
- const BootcampSchema = new mongoose.Schema({
+     const BootcampSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Please add a name'],
