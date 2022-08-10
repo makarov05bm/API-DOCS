@@ -232,3 +232,30 @@ module.exports = Model
 ```js
 app.use(express.json())
 ```
+<br/>
+<br/>
+
+## Custom error handling
+> Inside `middlewares` folder, `errorHandler.js`
+```js
+const errorHandler = (err, req, res, next) => {
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode
+    res.status(statusCode).json({
+        message: err.message,
+        stack: process.env.NODE_ENV === 'production' ? null : err.stack
+    })
+}
+
+const notFound = (req, res, next) => {
+    const error = new Error(`Not Found ${req.originalUrl}`)
+    res.status(404)
+    next(error)
+}
+
+module.exports = {
+    errorHandler,
+    notFound,
+}
+```
+> To use it, inside the controllers just throw new Error('error message')
+> `app.use` both methods in `server.js`
