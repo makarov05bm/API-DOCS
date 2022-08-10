@@ -65,3 +65,20 @@ const connectDB = async (url) => {
 
 module.exports = connectDB
 ```
+> In `server.js` add the db connection function
+```js
+const start = async () => {
+    try {
+        const conn = await connectDB(process.env.MONGO_URI)
+        console.log(`MongoDB connected successfully: ${conn.connection.host}`)
+        app.listen(PORT, () => {
+            console.log(`Server listening in ${process.env.NODE_ENV} mode on port ${PORT}`)
+        })
+    } catch (error) {
+        console.log(error)
+        process.exit(1)
+    }
+}
+
+start()
+```
