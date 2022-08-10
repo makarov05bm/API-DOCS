@@ -100,7 +100,7 @@ const Model = mongoose.model('Model', ModelSchema)
 
 module.exports = Model
 ```
-### model proprties
+### Model proprties
 | Option | Description | Example |
 | ------ | ----------- | ------- |
-| type   | The data type | type: String, Number, [String], [Number] |
+| **type**   | The data type | type: String, Number, [String], [Number] |
