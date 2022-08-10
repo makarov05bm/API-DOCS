@@ -43,9 +43,8 @@ app.use(base route, routesFile)
 ```js
 router.method(sub route, controller)
 ```
-
-> In the controller file
-> Install `express-async-handler`
+> In the controller file<br/>
+> Install `express-async-handler`<br/>
 > Wrap all the methods
 ```js
 const asyncHandler = require('express-async-handler')
