@@ -31,7 +31,7 @@ router.method(sub route, controller)
 ```
 > in the controller file
 ```js
-exports.getBootcamps = (req, res) => {
+exports.methodName = (req, res) => {
     // login goes in here
 }
 ```
