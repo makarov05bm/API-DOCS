@@ -257,5 +257,5 @@ module.exports = {
     notFound,
 }
 ```
-> To use it, inside the controllers just throw new Error('error message')<br/>
-> `app.use` both methods in `server.js`
+> To use it, inside the controllers just throw new Error('error message')<br/><br/>
+> Include and `app.use` both methods in `server.js`
