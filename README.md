@@ -217,7 +217,7 @@ module.exports = Model
 </p>
 </details>
 <br/>
-### Mongoose Models Methods
+###Mongoose Models Methods
 - **find**({...})
 - **findById**(id)
 - **findByIdAndUpdate**(id, {new data}, {new: true, runValidators: true})
