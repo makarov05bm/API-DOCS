@@ -91,7 +91,7 @@ start()
 <br/>
 <br/>
 
-## Models
+## Mongoose Models
 > Add the models in a `models` folder (as a convention they must be capatilized)
 ```js
 const mongoose = require('mongoose')
@@ -216,6 +216,11 @@ module.exports = Model
     
 </p>
 </details>
+### Mongoose Models Methods
+- **find**({...})
+- **findById**(id)
+- **findByIdAndUpdate**(id, {new data}, {new: true, runValidators: true})
+- **findByIdAndDelete**(id)
 <br/>
 <br/>
 
