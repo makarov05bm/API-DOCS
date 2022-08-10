@@ -45,7 +45,7 @@ router.method(sub route, controller)
 ```
 > in the controller file
 ```js
-exports.methodName = (req, res) => {
+exports.methodName = async(req, res) => {
     // login goes in here
 }
 ```
