@@ -1,5 +1,19 @@
 # API-DOCS
 
+## First setup packages
+> express, dotenv, nodemon, morgan 
+```js
+require('dotenv').config()
+```
+```js
+// http logger
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
+```
+<br/>
+<br/>
+
 ## package.json commands
 ```js
 npm init -y
