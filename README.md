@@ -121,8 +121,16 @@ module.exports = Model
 - findById(id)
 - findByIdAndUpdate(id, {new data}, {new: true, runValidators: true})
 - findByIdAndDelete(id)
-<br/>
+### Model Hooks
+```js
+// uses normal function syntax to use the this keyword in the appropriate way
+ModelSchema.pre('save', function(next) {
+  this.slug = slugify(this.name, { lower: true })
+  next() // must call next
+})
+```
 
+<br/>
 <details><summary>Show full example</summary>
 <p>
     
