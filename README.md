@@ -29,3 +29,9 @@ app.use(base route, routesFile)
 ```js
 router.method(sub route, controller)
 ```
+> in the controller file
+```js
+exports.getBootcamps = (req, res) => {
+    // login goes in here
+}
+```
