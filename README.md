@@ -49,3 +49,17 @@ exports.methodName = (req, res) => {
     // login goes in here
 }
 ```
+<br/>
+<br/>
+
+## Connecting to the database
+> Install mongoose
+> Put the connection URI in the `.env` file
+> Inside the `config` folder create a `db.js` file
+```js
+const mongoose = require('mongoose')
+
+const connectDB = async (url) => {
+    return await mongoose.connect(url)
+}
+```
