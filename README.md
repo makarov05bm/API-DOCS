@@ -216,13 +216,11 @@ module.exports = Model
     
 </p>
 </details>
-<br/>
 ### Mongoose Models Methods
 - find({...})
 - findById(id)
 - findByIdAndUpdate(id, {new data}, {new: true, runValidators: true})
 - findByIdAndDelete(id)
-
 <br/>
 <br/>
 
