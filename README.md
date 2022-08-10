@@ -101,6 +101,12 @@ const Model = mongoose.model('Model', ModelSchema)
 module.exports = Model
 ```
 ### Model proprties
-| Option | Description | Example |
-| ------ | ----------- | ------- |
-| **type**   | The data type | type: String, Number, [String], [Number] |
+| Option | Values |
+| ------ | ----------- |
+| **type**   | String, Number, [String], [Number] |
+| **required**   | true, false |
+| **default**   | true, 'no-inage.jpg' |
+| **trim**   | true, false |
+| **maxlength**   | 50, [100, 'error message'] |
+| **minlength**   | 50, [100, 'error message'] |
+| **match**   | regex, [regex, 'error message'] |
