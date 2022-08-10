@@ -116,6 +116,13 @@ module.exports = Model
 | **minlength**   | 50, [100, 'error message'] |
 | **match**   | regex, [regex, 'error message'] |
 
+### Model Methods
+- find({...})
+- findById(id)
+- findByIdAndUpdate(id, {new data}, {new: true, runValidators: true})
+- findByIdAndDelete(id)
+<br/>
+
 <details><summary>Show full example</summary>
 <p>
     
@@ -216,11 +223,6 @@ module.exports = Model
     
 </p>
 </details>
-### Mongoose Models Methods
-- find({...})
-- findById(id)
-- findByIdAndUpdate(id, {new data}, {new: true, runValidators: true})
-- findByIdAndDelete(id)
 <br/>
 <br/>
 
