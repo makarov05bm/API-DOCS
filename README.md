@@ -111,11 +111,11 @@ module.exports = Model
 | **minlength**   | 50, [100, 'error message'] |
 | **match**   | regex, [regex, 'error message'] |
 
-<details>
-<summary>Show full example</summary>
+<details><summary>Show full example</summary>
 <p>
+    
 ```js
-     const BootcampSchema = new mongoose.Schema({
+         const BootcampSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Please add a name'],
@@ -208,5 +208,6 @@ module.exports = Model
   }
 }, {timestamps: true})
 ```
+    
 </p>
 </details>
