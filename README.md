@@ -35,19 +35,22 @@ npm init -y
 <br/>
 
 ## Routes and controllers setup
-> in the server file
+> In the server file
 ```js
 app.use(base route, routesFile)
 ```
-> in the routes file
+> In the routes file
 ```js
 router.method(sub route, controller)
 ```
-> in the controller file
+> In the controller file
+> Install `express-async-handler`
+> Wrap all the methods
 ```js
-exports.methodName = async(req, res) => {
+const asyncHandler = require('express-async-handler')
+exports.methodName = asyncHandler(async(req, res) => {
     // login goes in here
-}
+})
 ```
 <br/>
 <br/>
