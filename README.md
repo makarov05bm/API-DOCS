@@ -212,3 +212,12 @@ module.exports = Model
     
 </p>
 </details>
+<br/>
+<br/>
+
+## Body parser
+> Parse the json data that comes from requests into javascript
+> In `server.js`
+```js
+app.use(express.json())
+```
