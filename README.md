@@ -271,8 +271,8 @@ module.exports = {
 <br/>
 
 ## Geocoding
-> Install `node-geocoder`
-> Add `GEOCODER_PROVIDER` and `GEOCODER_API_KEY` to the `.env` file
+> Install `node-geocoder`<br/>
+> Add `GEOCODER_PROVIDER` and `GEOCODER_API_KEY` to the `.env` file<br/>
 > Add the utility function
 ```js
 const NodeGeocoder = require('node-geocoder')
