@@ -216,6 +216,7 @@ module.exports = Model
     
 </p>
 </details>
+<br/>
 ### Mongoose Models Methods
 - **find**({...})
 - **findById**(id)
