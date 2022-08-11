@@ -389,7 +389,7 @@ if (req.query.sort) {
     const sortBy = req.query.sort.split(',').join(' ')
     query = query.sort(sortBy)
 } else {
-    query = query.sort('_id')
+    query = query.sort('-createdAt')
 }
 ```
 <br/>
