@@ -317,6 +317,35 @@ ModelSchema.pre('save', async function(next) {
   next()
 })
 ```
+### Application
+> Get the zip code and distance
+
+> Geocode using the zipcode
+
+> Get the radius by deviding the distance by earth radius
+
+> Query for the location field using `$geoWithin`
+```js
+    // route : /api/v1/bootcamps/:zipcode/:distance
+    const { zipcode, distance } = req.params
+
+    // Get lat/lng from the geocoder
+    const loc = await geocoder.geocode(zipcode)
+    const lat = loc[0].latitude
+    const lng = loc[0].longitude
+
+    // Calculate radius using radians : Devide distance by radius of earth
+    // Earth radius : 6378km
+    const radius = Number(distance) / 6378
+
+    const bootcamps = await Bootcamp.find({
+        location: {
+            $geoWithin: {
+                $centerSphere: [ [lng, lat], radius ]
+            }
+        }
+    })
+```
 <br/>
 <br/>
 
