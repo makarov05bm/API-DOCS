@@ -400,6 +400,10 @@ const startIndex = (page - 1) * limit
 const endIndex = page * limit
 const total = await Model.countDocuments()
 
+query = query.skip(startIndex).limit(limit)
+
+// run the query
+
 const pagination = {}
 
 if (startIndex > 0) {
