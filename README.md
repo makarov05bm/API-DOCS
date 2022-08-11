@@ -346,6 +346,8 @@ ModelSchema.pre('save', async function(next) {
         }
     })
 ```
+<br/>
+<br/>
 ## Advanced Filtering
 > Create a queryStr which holds the stringified version on `req.query`
 
@@ -364,6 +366,7 @@ query = Model.find(JSON.parse(queryStr))
 
 const bootcamps = await query
 ```
+<br/>
 <br/>
 <br/>
 <br/>
