@@ -356,18 +356,41 @@ ModelSchema.pre('save', async function(next) {
 
 > Add $ to the usual querying options
 
-> Parse the querying string and runa query
+> Parse the querying string and run a query
 
 ```js
 let query
 
-let queryStr = JSON.stringify(req.query)
+// copy of req.query
+let reqQuery = { ...req.query }
+
+// exclude special-meaning fields
+const excluded = ['select', 'sort']
+excluded.forEach(param => delete reqQuery[param])
+
+let queryStr = JSON.stringify(reqQuery)
 
 queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/, match => `$${match}`)
 
 query = Model.find(JSON.parse(queryStr))
 
 const bootcamps = await query
+```
+### Selecting certain fields within documents
+```js
+if (req.query.select) {
+    const fields = req.query.select.split(',').join(' ')
+    query = query.select(fields)
+}
+```
+### Sort by certain fields
+```js
+if (req.query.sort) {
+    const sortBy = req.query.sort.split(',').join(' ')
+    query = query.sort(sortBy)
+} else {
+    query = query.sort('_id')
+}
 ```
 <br/>
 <br/>
