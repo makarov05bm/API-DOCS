@@ -312,3 +312,71 @@ ModelSchema.pre('save', async function(next) {
   next()
 })
 ```
+<br/>
+<br/>
+
+## Data Seeder Script
+> configurate the `.env` file inside the seeding script
+
+> connect to the database
+
+> Import the models
+
+> Add `exportData` and `destroyData` functions
+
+> Configurate the `process.argv[2]` options
+
+```js
+const fs = require('fs')
+const path = require('path')
+const mongoose = require('mongoose')
+require('dotenv').config()
+require('colors')
+
+// Load models
+const Bootcamp = require('./models/Bootcamp')
+
+// Connect to db
+const connect = async() => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+connect()
+
+
+// Read JSON files
+const bootcamps = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'bootcamps.json'), 'utf-8'))
+
+// Export data into DB
+const importData = async() => {
+    try {
+        await Bootcamp.create(bootcamps)
+
+        console.log('Data Exported Successfully'.green.inverse);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// Delete Data from DB
+const deleteData = async() => {
+    try {
+        await Bootcamp.deleteMany()
+
+        console.log('Data Destroyed Successfully'.red.inverse);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// Commands
+if (process.argv[2] === '-e') {
+    importData()
+} else if (process.argv[2] === '-d') {
+    deleteData()
+}
+```
