@@ -322,7 +322,7 @@ ModelSchema.pre('save', async function(next) {
 
 > Geocode using the zipcode
 
-> Get the radius by deviding the distance by earth radius
+> Get the radius by dividing the distance by earth radius
 
 > Query for the location field using `$geoWithin`
 ```js
