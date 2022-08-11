@@ -351,6 +351,7 @@ ModelSchema.pre('save', async function(next) {
 ## Advanced Filtering
 
 ### Selecting certain documents
+
 > Create a queryStr which holds the stringified version on `req.query`
 
 > Add $ to the usual querying options
