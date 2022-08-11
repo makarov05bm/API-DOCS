@@ -346,6 +346,26 @@ ModelSchema.pre('save', async function(next) {
         }
     })
 ```
+## Advanced Filtering
+> Create a queryStr which holds the stringified version on `req.query`
+
+> Add $ to the usual querying options
+
+> Parse the querying string and runa query
+
+```js
+let query
+
+let queryStr = JSON.stringify(req.query)
+
+queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/, match => `$${match}`)
+
+query = Model.find(JSON.parse(queryStr))
+
+const bootcamps = await query
+```
+<br/>
+<br/>
 <br/>
 <br/>
 
