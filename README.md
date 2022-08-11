@@ -58,7 +58,9 @@ exports.methodName = asyncHandler(async(req, res) => {
 
 ## Connecting to the database
 > Install mongoose
+
 > Put the connection URI in the `.env` file
+
 > Inside the `config` folder create a `db.js` file
 ```js
 const mongoose = require('mongoose')
@@ -236,6 +238,7 @@ ModelSchema.pre('save', function(next) {
 
 ## Body parser
 > Parse the json data that comes from requests into javascript
+
 > In `server.js`
 ```js
 app.use(express.json())
@@ -271,8 +274,10 @@ module.exports = {
 <br/>
 
 ## Geocoding
-> Install `node-geocoder`<br/>
-> Add `GEOCODER_PROVIDER` and `GEOCODER_API_KEY` to the `.env` file<br/>
+> Install `node-geocoder`
+
+> Add `GEOCODER_PROVIDER` and `GEOCODER_API_KEY` to the `.env` file
+
 > Add the utility function
 ```js
 const NodeGeocoder = require('node-geocoder')
