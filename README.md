@@ -530,6 +530,45 @@ BootcampSchema.pre('remove', async function(next) {
 ```
 
 > In the controller of the main model, don't use `findByIdAndDelete()`, instead use `findById()` and then `document.remove()`
+<br/>
+<br/>
+
+## Aggregation
+```js
+/ Static method to get average of course tuitions
+CourseSchema.statics.getAverageCost = async function(bootcampId) {
+    const obj = await this.aggregate([
+        {
+            $match: { bootcamp: bootcampId }
+        },
+        {
+            $group: {
+                _id: '$bootcamp',
+                averageCost: { $avg: 'tuition' }
+            }
+        }
+    ])
+
+    try {
+        await this.model('Bootcamp').findByIdAndUpdate(bootcampId, {
+            averageCost: Math.ceil(obj[0].averageCost / 10) * 10
+        })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// Call getAverageCost after save
+CourseSchema.post('save', function() {
+    this.constructor.getAverageCost(this.bootcamp)
+})
+
+// Call getAverageCost before remove
+CourseSchema.pre('remove', function() {
+    this.constructor.getAverageCost(this.bootcamp)
+})
+
+```
 
 <br/>
 <br/>
