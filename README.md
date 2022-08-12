@@ -117,8 +117,10 @@ module.exports = Model
 | **maxlength**   | 50, [100, 'error message'] |
 | **minlength**   | 50, [100, 'error message'] |
 | **match**   | regex, [regex, 'error message'] |
+| **ObjectId**   | mongoose.Schema.Types.ObjectId |
 
 ### Model Methods
+- create(object)
 - find({...})
 - findById(id)
 - findByIdAndUpdate(id, {new data}, {new: true, runValidators: true})
@@ -422,6 +424,25 @@ if (endIndex < total) {
 
 // add pagination object to the response
 ```
+<br/>
+<br/>
+
+## Merging Routes
+> Let's say we have these two routes: `/api/v1/courses` and `/api/v1/bootcamps/:bootcampId/courses`, we can use one controller method for both of them.
+
+> In the courses routes file, it's simple
+
+> In the bootcamps routes file, we require the `coursesRoutes` file, then
+```js
+router.use('/:bootcampId/courses', courseRoutes)
+```
+
+> In the `courseRoutes` we merge the routes
+```js
+const router = express.Router({ mergeParams: true })
+```
+
+
 <br/>
 <br/>
 <br/>
