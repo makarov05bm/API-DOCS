@@ -460,7 +460,18 @@ const router = express.Router({ mergeParams: true })
         data: courses,
     })
 ```
+<br/>
+<br/>
 
+## Populate
+> .populate('fieled')
+> .populate({ path: 'field', select: 'fields' })
+```js
+    query = Course.find().populate({
+            path: 'bootcamp',
+            select: 'name description',
+        })
+```
 
 <br/>
 <br/>
