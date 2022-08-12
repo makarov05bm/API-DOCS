@@ -618,7 +618,9 @@ module.exports = router
 ```
 ### Upload image to Cloudinary
 > Install `multer`
+
 > Install `cloudinary`
+
 > Install `multer-storage-cloudinary`
 ```js
 const express = require('express')
