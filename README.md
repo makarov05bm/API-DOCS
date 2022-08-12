@@ -462,7 +462,7 @@ const router = express.Router({ mergeParams: true })
 ```
 > Also if we wanted to create a course for a specific bootcamp, we can use the same route with a `POST` method
 ```js
-req.body.bootcampId = req.params.bootcampId
+    req.body.bootcampId = req.params.bootcampId
 
     // Make sure that the bootcamp exists before create a course associated with it
     const bootcamp = await Bootcamp.findById(req.params.bootcampId)
