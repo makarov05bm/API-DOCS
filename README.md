@@ -573,9 +573,8 @@ CourseSchema.pre('remove', function() {
 <br/>
 
 ## Image Upload
+### Upload image locally on the server
 > Install `multer`
-
-> Upload images to the server
 ```js
 const express = require('express')
 const multer = require('multer')
@@ -617,7 +616,10 @@ router.post('/', upload.single('image'), (req, res) => {
 
 module.exports = router
 ```
-> Upload image to cloudinary
+### Upload image to Cloudinary
+> Install `multer`
+> Install `cloudinary`
+> Install `multer-storage-cloudinary`
 ```js
 const express = require('express')
 const cloudinary = require("cloudinary").v2;
