@@ -535,7 +535,7 @@ BootcampSchema.pre('remove', async function(next) {
 
 ## Aggregation
 ```js
-/ Static method to get average of course tuitions
+// Static method to get average of course tuitions
 CourseSchema.statics.getAverageCost = async function(bootcampId) {
     const obj = await this.aggregate([
         {
