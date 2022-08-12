@@ -494,9 +494,9 @@ BootcampSchema.virtual('courses', {
 })
 ```
 > Then in the `big` model's controller, we populate the query with `courses`
-<br/>
-<br/>
-
+```js
+query = Bootcamp.find(JSON.parse(queryStr)).populate('courses')
+```
 
 <br/>
 <br/>
