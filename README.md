@@ -574,6 +574,8 @@ CourseSchema.pre('remove', function() {
 
 ## Image Upload
 > Install `multer`
+
+> Upload images to the server
 ```js
 const express = require('express')
 const multer = require('multer')
@@ -611,6 +613,39 @@ const upload = multer({
 
 router.post('/', upload.single('image'), (req, res) => {
     res.send(`\\${req.file.path}`)
+})
+
+module.exports = router
+```
+> Upload image to cloudinary
+```js
+const express = require('express')
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require('multer')
+// const path = require('path')
+
+const router = express.Router()
+
+cloudinary.config({
+    cloud_name: "dfnqmhmae",
+    api_key: "766665794797967",
+    api_secret: "Bm0BfN4p2Rlsn2_3RQZQKqWnDp4",
+})
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: "users_photos",
+    },
+})
+
+const upload = multer({
+    storage: storage,
+})
+
+router.post('/', upload.single('image'), (req, res) => {
+    res.send(req.file.path)
 })
 
 module.exports = router
