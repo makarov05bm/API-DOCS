@@ -472,6 +472,31 @@ const router = express.Router({ mergeParams: true })
             select: 'name description',
         })
 ```
+<br/>
+<br/>
+
+## Virtuals
+> Virtuals are document proprties that you can get and set but that do not get presisted to MongoDB
+
+> In the `big` Model(the one that will contain sub documents) we add with `timestamps`
+
+```js
+toJSON: { virtuals: true }
+toObject: { virtuals: true }
+```
+> And we add the viruals
+```js
+BootcampSchema.virtual('courses', {
+  ref: 'Course',
+  localField: '_id',
+  foreignField: 'bootcamp',
+  justOne: false,
+})
+```
+> Then in the `big` model's controller, we populate the query with `courses`
+<br/>
+<br/>
+
 
 <br/>
 <br/>
