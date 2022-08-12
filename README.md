@@ -497,6 +497,20 @@ BootcampSchema.virtual('courses', {
 ```js
 query = Bootcamp.find(JSON.parse(queryStr)).populate('courses')
 ```
+<br/>
+<br/>
+
+## Cascade-Delete Documnets
+> Add a pre remove hook in the main model
+```js
+// Cascade Delete courses when a bootcamp is deleted
+BootcampSchema.pre('remove', async function(next) {
+  await this.model('Course').deleteMany({ bootcamp: this._id })
+  next()
+})
+```
+
+> In the controller of the main model, don't use `findByIdAndDelete()`, instead use `findById()` and then `document.remove()`
 
 <br/>
 <br/>
