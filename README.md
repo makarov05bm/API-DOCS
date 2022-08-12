@@ -442,6 +442,24 @@ router.use('/:bootcampId/courses', courseRoutes)
 const router = express.Router({ mergeParams: true })
 ```
 > Then the methods on the `/` route in `courseRoutes` will be executed
+> The controller method
+```js
+    let query
+
+    if (req.params.bootcampId) {
+        query = Course.find({ bootcamp: req.params.bootcampId })
+    } else {
+        query = Course.find()
+    }
+
+    const courses = await query
+
+    res.status(200).json({
+        success: true,
+        count: courses.length,
+        data: courses,
+    })
+```
 
 
 <br/>
