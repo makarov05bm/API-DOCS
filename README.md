@@ -441,6 +441,7 @@ router.use('/:bootcampId/courses', courseRoutes)
 ```js
 const router = express.Router({ mergeParams: true })
 ```
+> Then the methods on the `/` route in `courseRoutes` will be executed
 
 
 <br/>
