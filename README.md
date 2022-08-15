@@ -704,9 +704,11 @@ exports.registerUser = asyncHandler(async (req, res) => {
         password,
         role
     })
+    
+    const token = user.generateJWT()
 
     if (user) {
-        res.status(200).json({success: true, data: user})
+        res.status(200).json({success: true, data: user, token})
     } else {
        res.status(422)
        throw new Error('Invalid Input')
