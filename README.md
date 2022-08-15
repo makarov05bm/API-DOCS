@@ -838,6 +838,28 @@ exports.authorize = (...roles) => {
     }
 }
 ```
+### Relashionships
+> In the model add a ref
+```js
+user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+}
+```
+> In the controller
+```js
+    req.body.user = req.user._id
+
+    // Check for published bootcamp
+    const publishedBootcamp = await Bootcamp.findOne({ user: req.user._id })
+
+    // If user is admin, the can publish as many bootcamps as needed
+    if (publishedBootcamp && !req.user.role === 'admin') {
+        res.status(400)
+        throw new Error('You have already published a bootcamp')
+    }
+```
 ### Get user profile
 ```js
 // @desc        Get User's Profile
