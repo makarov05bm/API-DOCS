@@ -860,6 +860,13 @@ user: {
         throw new Error('You have already published a bootcamp')
     }
 ```
+### Owenership
+```js
+if ((bootcamp.user.toString() !== req.user._id) && req.user.role !== 'admin') {
+    res.status(401)
+    throw new Error('User not authorized to update this bootcamp')
+} 
+```
 ### Get user profile
 ```js
 // @desc        Get User's Profile
