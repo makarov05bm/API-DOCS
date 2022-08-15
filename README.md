@@ -755,7 +755,43 @@ exports.authUser = asyncHandler(async (req, res) => {
     }
 })
 ```
- 
+### Sending token in cookies
+> Install `cookie-parser`
+
+> Include it in `server` and `app.use(cookieParse())`
+
+> In `authController`
+```js
+// Get token from model, create cookie and send response
+const sendTokenResponse = (user, statusCode, res) => {
+    const token = user.generateJWT()
+
+    const options = {
+        expires: new Date(Date.now() + (30 * 60 * 60 * 24 * 1000)),
+        httpOnly: true,
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+        options.secure = true
+    }
+
+    res
+        .status(statusCode)
+        .cookie('token', token, options)
+        .json({
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            token: user.generateJWT(),
+        })
+}
+```
+> Then whenever we send a successful response, we send it like so
+```js
+sendTokenResponse(user, 200, res)
+```
+
+
 
 <br/>
 <br/>
