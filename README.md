@@ -758,9 +758,7 @@ exports.authUser = asyncHandler(async (req, res) => {
 ### Sending token in cookies
 > **What Are Cookies?**
 >Cookies are small files of information that a web server generates and sends to a web browser. Web browsers store the cookies they receive for a predetermined period of time, or for the length of a user's session on a website. They attach the relevant cookies to any future requests the user makes of the web server.
-
 Cookies help inform websites about the user, enabling the websites to personalize the user experience. For example, ecommerce websites use cookies to know what merchandise users have placed in their shopping carts. In addition, some cookies are necessary for security purposes, such as authentication cookies (see below).
-
 The cookies that are used on the Internet are also called "HTTP cookies." Like much of the web, cookies are sent using the HTTP protocol.
 
 > Install `cookie-parser`
