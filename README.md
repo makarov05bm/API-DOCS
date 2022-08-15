@@ -705,6 +705,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
         role
     })
     
+    // Generate token
     const token = user.generateJWT()
 
     if (user) {
