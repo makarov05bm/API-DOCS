@@ -661,7 +661,6 @@ module.exports = router
 ## Authentication
 ### Packages
 > `jsonwebtoken` and `bcryptjs`
-<br/>
 
 ### File Structure
 
