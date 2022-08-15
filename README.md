@@ -655,6 +655,15 @@ router.post('/', upload.single('image'), (req, res) => {
 
 module.exports = router
 ```
+<br/>
+<br/>
+
+## Authentication
+### File Structure
+> **Route:** /api/v1/auth
+
+> `authControllers` and `authRoutes` files
+ 
 
 <br/>
 <br/>
