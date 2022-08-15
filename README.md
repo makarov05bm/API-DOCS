@@ -836,7 +836,7 @@ exports.getMe = asyncHandler(async (req, res) => {
 })
 ```
 ### Set Authorization headers automatically
-> In `login` and `trgister` routes in Postman, in the `Tests` tab
+> In `login` and `register` routes in Postman, in the `Tests` tab
 ```js
 pm.environment.set('TOKEN', pm.response.json().token)
 ```
