@@ -824,6 +824,20 @@ exports.protect = asyncHandler(async (req, res, next) => {
     next()
 })
 ```
+### Role Authorization
+```js
+// Grant access to specific roles
+exports.authorize = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            res.status(403)
+            throw new Error('User role unauthorized to access this route')
+        }
+
+        next()
+    }
+}
+```
 ### Get user profile
 ```js
 // @desc        Get User's Profile
