@@ -724,6 +724,37 @@ UserSchema.methods.generateJWT = function() {
     return jwt.sign({userId: this._id}, process.env.JWT_SECRET, {expiresIn: '30d'})
 }
 ```
+
+### User Authentication
+```js
+// @desc        Authenticate user
+// @router      POST /api/v1/auth/login
+// @access      Public
+exports.authUser = asyncHandler(async (req, res) => {
+    const { email, password } = req.body
+
+    // Validate email & password
+    if (email && password) {
+        const user = await User.findOne({email}).select('+password')
+
+        if (user && (await user.matchPassword(password))) {
+            res.status(200)
+            res.json({
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                token: user.generateJWT(),
+            })
+        } else {
+            res.status(401)
+            throw new Error('Invalid Credentials') 
+        }
+    } else {
+        res.status(422)
+        throw new Error('Invalid Input')
+    }
+})
+```
  
 
 <br/>
