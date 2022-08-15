@@ -713,6 +713,14 @@ exports.registerUser = asyncHandler(async (req, res) => {
     }
 })
 ```
+
+### Token Generation
+> In the `User` model
+```js
+UserSchema.methods.generateJWT = function() {
+    return jwt.sign({userId: this._id}, process.env.JWT_SECRET, {expiresIn: '30d'})
+}
+```
  
 
 <br/>
