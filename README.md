@@ -662,7 +662,9 @@ module.exports = router
 ### Packages
 > `jsonwebtoken` and `bcryptjs`
 <br/>
+
 ### File Structure
+
 > **Route:** /api/v1/auth
 
 > `authControllers` and `authRoutes` files
