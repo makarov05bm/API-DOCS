@@ -819,7 +819,17 @@ exports.protect = asyncHandler(async (req, res, next) => {
     next()
 })
 ```
+### Get user profile
+```js
+// @desc        Get User's Profile
+// @router      GET /api/v1/auth/me
+// @access      Private
+exports.getMe = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id)
 
+    res.status(200).json({ success: true, data: user })
+})
+```
 
 
 <br/>
