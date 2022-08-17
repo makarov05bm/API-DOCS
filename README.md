@@ -883,7 +883,141 @@ exports.getMe = asyncHandler(async (req, res) => {
 ```js
 pm.environment.set('TOKEN', pm.response.json().token)
 ```
+<br/>
+<br/>
 
+## Password Recovery
+### Forgot Password
+> Add `resetPasswordToken` and `resetPasswordExpire` fields to the `user` model
+
+> Add `getResetToken` method in the `user` model
+```js
+    const resetToken = crypto.randomBytes(20).toString('hex')
+    
+    // Hash and save resetToken
+    this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex')
+    
+    // Set the expiration to 10 minutes
+    this.resetPasswordExpire = Date.now() + 10 * 60 * 1000
+    
+    // return the original reset token before hash
+    return resetToken
+```
+> In `authController` add `forgotPassword` method
+```js
+// @desc        Forgot password
+// @router      GET /api/v1/auth/forgot-password
+// @access      Public
+exports.forgotPassword = asyncHandler(async (req, res) => {
+    const user = await User.findOne({ email: req.body.email })
+
+    if (!user) {
+        res.status(404)
+        throw new Error('There is no user with this email')
+    }
+
+    // Get reset password token
+    const resetToken = user.getResetToken()
+
+    await user.save({ validateBeforeSave: false })
+
+    res.status(200).json(user)
+})
+
+```
+### Send Email
+> Install `nodemailer`
+
+> In `.env`
+```js
+SMTP_HOST="smtp.mailtrap.io"
+SMTP_PORT=2525
+SMTP_EMAIL="2ed627cfef7dff"
+SMTP_PASSWORD="00966f317c5439"
+FROM_EMAIL=noreply@api.io
+FROM_NAME=api-docs
+```
+> In `utils/sendEmail.js`
+```js
+const nodemailer = require('nodemailer')
+
+const sendEmail = async (options) => {
+    const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        auth: {
+            user: process.env.SMTP_EMAIL,
+            pass: process.env.SMTP_PASSWORD
+        }
+    })
+
+    const message = {
+        from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
+        to: options.email,
+        subject: options.subject,
+        text: options.message,
+    }
+
+    await transporter.sendMail(message)
+}
+
+module.exports = sendEmail
+```
+> In `authController` `forgotPassword` method, after saving the `resetToken` to the data base, send the email
+```js
+    // Create reset URL
+    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/resetpassword/${resetToken}`
+
+    try {
+        await sendEmail({
+            email: user.email,
+            subject: 'Password reset token',
+            message: `reset your password : ${resetUrl}`
+        }) 
+
+        res.status(200).json({success: true, data: 'Email sent'})
+    } catch (error) {
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpire = undefined
+
+        await user.save({validateBeforeSave: false})
+
+        res.status(500)
+        throw new Error('Email could not be sent')
+    }
+```
+### Reset Passowrd
+> In `authController` add `resetPassword` method
+```js
+
+// @desc        Reset Password
+// @router      PUT /api/v1/auth/reset-password/:resettoken
+// @access      Public
+exports.resetPassowrd = asyncHandler(async (req, res) => {
+    // Hash the token
+    const resetPasswordToken = crypto.createHash('sha256').update(req.params.resettoken).digest('hex')
+
+    const user = await User.findOne({
+        resetPasswordToken,
+        resetPasswordExpire: { $gt: Date.now() }
+    })
+
+    if (user) {
+        // Set new password
+        user.password = req.body.password
+
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpire = undefined
+
+        await user.save({ validateBeforeSave: false })
+
+        sendTokenResponse(user, 200, res)
+    } else {
+        res.status(400)
+        throw new Error('Invalid token')
+    }
+})
+```
 
 <br/>
 <br/>
