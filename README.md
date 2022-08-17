@@ -114,7 +114,7 @@ module.exports = Model
 | **default**   | true, 'no-inage.jpg' |
 | **unique**   | true, false |
 | **select**   | true, false |
-| **enum**   | ['PWN', 'RE', 'Melware Development'] |
+| **enum**   | ['PWN', 'RE', 'Malware Development'] |
 | **trim**   | true, false |
 | **maxlength**   | 50, [100, 'error message'] |
 | **minlength**   | 50, [100, 'error message'] |
