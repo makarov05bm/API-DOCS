@@ -878,6 +878,39 @@ exports.getMe = asyncHandler(async (req, res) => {
     res.status(200).json({ success: true, data: user })
 })
 ```
+### Update user profile
+```js
+
+// @desc        Update user details
+// @router      PUT /api/v1/auth/update
+// @access      Private
+exports.updateProfile = asyncHandler(async (req, res) => {
+    const { name, email, currentPassword, newPassword } = req.body
+    
+    const user = await User.findById(req.user._id).select('+password')
+
+    if (user) {
+        user.name = name || req.user.name
+        user.email = email || req.user.email
+
+        if (currentPassword && newPassword) {
+            if (!(await user.matchPassword(currentPassword))) {
+                res.status(401)
+                throw new Error('Password is incorrect')
+            } else {
+                user.password = newPassword
+
+                await user.save()
+
+                sendTokenResponse(user, 200, res)
+            }
+        }
+    } else {
+        res.status(404)
+        throw new Error('Could not find user')
+    }
+})
+```
 ### Set Authorization headers automatically
 > In `login` and `register` routes in Postman, in the `Tests` tab
 ```js
