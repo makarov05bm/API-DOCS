@@ -1009,7 +1009,7 @@ exports.resetPassowrd = asyncHandler(async (req, res) => {
         user.resetPasswordToken = undefined
         user.resetPasswordExpire = undefined
 
-        await user.save({ validateBeforeSave: false })
+        await user.save()
 
         sendTokenResponse(user, 200, res)
     } else {
