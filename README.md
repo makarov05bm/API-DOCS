@@ -1063,6 +1063,38 @@ exports.resetPassowrd = asyncHandler(async (req, res) => {
 ```js
 ReviewSchema.index({ bootcamp: 1, user: 1 }, { unique: true })
 ```
+### Average Rating
+```js
+ReviewSchema.statics.getAverageRating = async(bootcampId) => {
+    const obj = await this.aggregate([
+        {
+            $match: { bootcamp: bootcampId }
+        },
+        {
+            $group: {
+                _id: '$bootcamp',
+                averageRating: { $avg: '$rating' }
+            }
+        }
+    ])
+
+    try {
+        await this.model('bootcamp').findByIdAndUpdate(bootcampId, {
+            averageRating: obj[0].averageRating
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+ReviewSchema.post('save', function() {
+    this.constructor.getAverageRating(this.bootcamp)
+})
+
+ReviewSchema.pre('remove', function() {
+    this.constructor.getAverageRating(this.bootcamp)
+})
+```
 <br/>
 <br/>
 
