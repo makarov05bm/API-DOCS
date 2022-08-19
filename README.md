@@ -1129,6 +1129,18 @@ const advancedResults = (model, populate) => async (req, res, next) => {
 
 module.exports = advancedResults
 ```
+> In the resource Router, include `advancedResults` and the model for the target resource
+```js
+router.route('/').get(advancedResults(Review, {
+    path: 'bootcamp',
+    select: 'name description'
+}), getReviews)
+```
+> In the controllers
+```js
+res.status(200).json(res.advancedResults)
+```
+
 <br/>
 <br/>
 <br/>
