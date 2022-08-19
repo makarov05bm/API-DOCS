@@ -119,6 +119,8 @@ module.exports = Model
 | **maxlength**   | 50, [100, 'error message'] |
 | **minlength**   | 50, [100, 'error message'] |
 | **match**   | regex, [regex, 'error message'] |
+| **min**   | 1, 2 |
+| **max**   | 10, 100 |
 | **ObjectId**   | mongoose.Schema.Types.ObjectId |
 
 ### Model Methods
@@ -1061,6 +1063,8 @@ exports.resetPassowrd = asyncHandler(async (req, res) => {
 ```js
 ReviewSchema.index({ bootcamp: 1, user: 1 }, { unique: true })
 ```
+<br/>
+<br/>
 
 ## Advanced Results Middleware
 ```js
