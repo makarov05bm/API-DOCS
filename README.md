@@ -1054,6 +1054,14 @@ exports.resetPassowrd = asyncHandler(async (req, res) => {
 <br/>
 <br/>
 
+## Reviews
+> Add `bootcamp` and `user` to the `Review` model
+
+> Add index to prevent the user from submitting more than one review per bootcamp
+```js
+ReviewSchema.index({ bootcamp: 1, user: 1 }, { unique: true })
+```
+
 ## Advanced Results Middleware
 ```js
 const advancedResults = (model, populate) => async (req, res, next) => {
