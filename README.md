@@ -1136,7 +1136,7 @@ router.route('/').get(advancedResults(Review, {
     select: 'name description'
 }), getReviews)
 ```
-> In the controllers
+> In the controller
 ```js
 res.status(200).json(res.advancedResults)
 ```
