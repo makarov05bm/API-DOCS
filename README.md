@@ -1240,7 +1240,7 @@ const limiter = rateLimit({
 app.use(limiter)
 ```
 
-### Prevent HTTP param poluution attacks (HPP)
+### Prevent HTTP param pollution attacks (HPP)
 > Install `hpp`, and in `server`
 ```js
 const hpp = request('hpp')
