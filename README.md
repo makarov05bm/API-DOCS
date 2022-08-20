@@ -1206,6 +1206,7 @@ const mongoSanitizer = require('express-mongo-sanitizer')
 app.use(mongoSanitizer())
 ```
 <br/>
+
 ### XSS Attacks
 #### Vulnarability
 > If we enter data with harmful tags
@@ -1219,6 +1220,7 @@ const xss = require('xss-clean')
 app.use(xss())
 ```
 <br/>
+
 ### Security Headers
 > Install `helmet`, and in `server`
 ```js
