@@ -808,6 +808,8 @@ exports.protect = asyncHandler(async (req, res, next) => {
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         token = req.headers.authorization.split(' ')[1]
+    } else if (req.cookies.token) {
+        token = req.cookies.token
     }
 
     if (!token) {
@@ -1185,6 +1187,22 @@ router.route('/').get(advancedResults(Review, {
 > In the controller
 ```js
 res.status(200).json(res.advancedResults)
+```
+<br/>
+<br/>
+
+## API Security
+### NoSql Injections
+#### Vulnarability
+> If we send a post request to `/api/v1/auth/login` with body
+```js
+"email": {"$gt": ""},
+"password": any-password-that-exists-in-the-db-even-if-it-is-not-encrypted
+```
+> Solution: Install `express-mongo-sanitizer` and in `server`
+```js
+const mongoSanitizer = require('express-mongo-sanitizer')
+app.use(mongoSanitizer)
 ```
 
 <br/>
