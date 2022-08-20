@@ -1199,7 +1199,8 @@ res.status(200).json(res.advancedResults)
 "email": {"$gt": ""},
 "password": any-password-that-exists-in-the-db-even-if-it-is-not-encrypted
 ```
-> Solution: Install `express-mongo-sanitizer` and in `server`
+#### Vulnarability
+> Install `express-mongo-sanitizer` and in `server`
 ```js
 const mongoSanitizer = require('express-mongo-sanitizer')
 app.use(mongoSanitizer)
