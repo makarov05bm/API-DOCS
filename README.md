@@ -1205,7 +1205,6 @@ res.status(200).json(res.advancedResults)
 const mongoSanitizer = require('express-mongo-sanitizer')
 app.use(mongoSanitizer())
 ```
-<br/>
 
 ### XSS Attacks
 #### Vulnarability
@@ -1219,7 +1218,6 @@ app.use(mongoSanitizer())
 const xss = require('xss-clean')
 app.use(xss())
 ```
-<br/>
 
 ### Security Headers
 > Install `helmet`, and in `server`
@@ -1227,6 +1225,35 @@ app.use(xss())
 const xss = require('helmet')
 app.use(helmet())
 ```
+
+### Rate Limiting
+> Install `express-rate-limit`, and in `server`
+```js
+const rateLimit = require('express-rate-limit')
+
+// 100 requests per 10 minutes 
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 100,
+})
+
+app.use(limiter)
+```
+
+### Prevent HTTP param poluution attacks (HPP)
+> Install `hpp`, and in `server`
+```js
+const hpp = request('hpp')
+app.use(hpp())
+```
+
+### Enable CORS
+> Install `cors`, and in `server`
+```js
+const cors = request('cors')
+app.use(cors())
+```
+
 
 <br/>
 <br/>
