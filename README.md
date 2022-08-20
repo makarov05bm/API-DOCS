@@ -1060,6 +1060,8 @@ exports.resetPassowrd = asyncHandler(async (req, res) => {
 > Add `bootcamp` and `user` to the `Review` model
 
 > Add index to prevent the user from submitting more than one review per bootcamp
+
+> index will check in the `Review` collection whether there is a document that has fields `bootcamp` and `user` before creating the document, if not then it will be created 
 ```js
 ReviewSchema.index({ bootcamp: 1, user: 1 }, { unique: true })
 ```
