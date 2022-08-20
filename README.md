@@ -1199,11 +1199,31 @@ res.status(200).json(res.advancedResults)
 "email": {"$gt": ""},
 "password": any-password-that-exists-in-the-db-even-if-it-is-not-encrypted
 ```
-#### Vulnarability
+#### Solution
 > Install `express-mongo-sanitizer` and in `server`
 ```js
 const mongoSanitizer = require('express-mongo-sanitizer')
-app.use(mongoSanitizer)
+app.use(mongoSanitizer())
+```
+<br/>
+### XSS Attacks
+#### Vulnarability
+> If we enter data with harmful tags
+```js
+"name": "<script>alert('XSS')<script>"
+```
+#### Solution
+> Install `xss-clean` and in `server`
+```js
+const xss = require('xss-clean')
+app.use(xss())
+```
+<br/>
+### Security Headers
+> Install `helmet`, and in `server`
+```js
+const xss = require('helmet')
+app.use(helmet())
 ```
 
 <br/>
