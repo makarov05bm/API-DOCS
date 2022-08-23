@@ -818,7 +818,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.decode(token, process.env.JWT_SECRET)
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
         req.user = await User.findById(decoded.userId)
     } catch (error) {
         res.status(401)
