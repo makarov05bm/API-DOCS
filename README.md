@@ -657,6 +657,31 @@ router.post('/', upload.single('image'), (req, res) => {
 
 module.exports = router
 ```
+### Image Upload Frontend
+```js
+    const uploadImageHandler = async (e) => {
+        const image = e.target.files[0]
+        const formData = new FormData()
+        formData.append('image', image)
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }
+
+            const { data } = await axios.post('/api/uploads', formData, config)
+
+            setImage(data)
+            setUploading(false)
+        } catch (error) {
+            console.error(error)
+            setUploading(false)
+        }
+    }
+```
 <br/>
 <br/>
 
