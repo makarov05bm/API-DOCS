@@ -994,8 +994,8 @@ exports.forgotPassword = asyncHandler(async (req, res) => {
 ```js
 SMTP_HOST="smtp.mailtrap.io"
 SMTP_PORT=2525
-SMTP_EMAIL="2ed627cfef7dff"
-SMTP_PASSWORD="00966f317c5439"
+SMTP_EMAIL=email"
+SMTP_PASSWORD="pwd"
 FROM_EMAIL=noreply@api.io
 FROM_NAME=api-docs
 ```
